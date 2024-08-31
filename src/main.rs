@@ -12,6 +12,19 @@ const Rsz: usize = 0x100;
 /// data stack size, cells
 const Dsz: usize = 0x10;
 
+/// main memory
+static mut M: &'static mut [u8] = &mut [0; Msz];
+/// compiler pointer
+static mut Cp: usize = 0;
+/// instruction pointer
+static mut Ip: usize = 0;
+
+/// return stack
+static mut R: &'static mut [usize] = &mut [0; Rsz];
+
+/// data stack
+static mut D: &'static mut [isize] = &mut [0; Dsz];
+
 /// check memory sizes
 fn check_memory() {
     println!("M:0x{Msz:x} R:0x{Rsz:x} D:0x{Dsz:x}");
@@ -25,16 +38,21 @@ fn check_memory() {
 
 fn main() {
     check_memory();
-    vm();
+    unsafe {
+        vm();
+    }
 }
 
-fn vm() {
-    /// main memory
-    let mut M: [u8; Msz];
-    /// compiler pointer
-    let mut Cp: usize = 0;
-    /// instruction pointer
-    let mut Ip: usize = 0;
+unsafe fn vm() {
+    loop {
+        fetch();
+    }
+}
+
+unsafe fn fetch() {
+    assert!(Ip < Cp);
+    let op: u8 = M[Ip];
+    Ip += 1;
 }
 
 /// `( -- )` empty command: do nothing
