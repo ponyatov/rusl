@@ -1,13 +1,13 @@
 {
     "multiCommand.commands": [
-        { "command": "multiCommand.f11",
-            "sequence": [ "workbench.action.files.saveAll",
-                { "command": "workbench.action.terminal.sendSequence",
-                    "args": {"text": "\u000D clear ; LANG=C make format \u000D"}}]},
-        { "command": "multiCommand.f12",
-            "sequence": [ "workbench.action.files.saveAll",
-                { "command": "workbench.action.terminal.sendSequence",
-                    "args": {"text": "\u000D clear ; LANG=C make all \u000D"}}]},
+        // { "command": "multiCommand.f11",
+        //     "sequence": [ "workbench.action.files.saveAll",
+        //         { "command": "workbench.action.terminal.sendSequence",
+        //             "args": {"text": "\u000D clear ; LANG=C make format \u000D"}}]},
+        // { "command": "multiCommand.f12",
+        //     "sequence": [ "workbench.action.files.saveAll",
+        //         { "command": "workbench.action.terminal.sendSequence",
+        //             "args": {"text": "\u000D clear ; LANG=C make all \u000D"}}]},
         { "command": "multiCommand.altx",
             "sequence": [ "workbench.action.files.saveAll",
                 { "command": "workbench.action.terminal.sendSequence",
@@ -15,7 +15,7 @@
         { "command": "multiCommand.alts",
             "sequence": [ "workbench.action.files.saveAll",
                 { "command": "workbench.action.terminal.sendSequence",
-                    "args": {"text": "\u000D clear ; LANG=C make rwh \u000D"}}]},
+                    "args": {"text": "\u000D clear ; LANG=C make format \u000D"}}]},
     ],
 
     // files
@@ -50,7 +50,8 @@
     "C_Cpp.intelliSenseEngine": "Tag Parser",
 
     // Rust
-	"rust-analyzer.checkOnSave": true,
+    "rust-analyzer.checkOnSave": true,
+    "rust-analyzer.check.invocationStrategy": "once",
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer",
         "editor.formatOnSave": true

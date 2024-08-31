@@ -1,0 +1,8 @@
+[package]
+name        = "rusl"
+description = "Rust Script"
+version     = "0.0.1"
+edition     = "2021"
+
+[build]
+[dependencies]

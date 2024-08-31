@@ -16,6 +16,7 @@
         // "ms-vscode.cmake-tools",
         // Rust
         "rust-lang.rust-analyzer",
-        "statiolake.vscode-rustfmt"
+        "statiolake.vscode-rustfmt",
+        "tamasfe.even-better-toml"
     ]
 }

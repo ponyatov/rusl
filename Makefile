@@ -1,3 +1,6 @@
+# var
+MODULE = $(notdir $(CURDIR))
+
 # dir
 CAR = $(HOME)/.cargo/bin
 
@@ -5,6 +8,22 @@ CAR = $(HOME)/.cargo/bin
 CURL   = curl -L -o
 RUSTUP = $(CAR)/rustup
 CARGO  = $(CAR)/cargo
+
+# src
+R += $(wildcard src/*.rs)
+
+# all
+.PHONY: run all
+all: bin/$(MODULE)
+run: lib/$(MODULE).ini $(R)
+	$(CARGO) run -- $<
+
+# format
+
+
+# rule
+bin/$(MODULE): $(R)
+	$(CARGO) build
 
 # doc
 .PHONY: doc
@@ -18,8 +37,9 @@ $(HOME)/doc/Rust/The_Rust_Programming_Language.pdf:
 
 # install
 .PHONY: install update ref gz
-install: doc ref gz
+install: doc ref gz $(RUSTUP)
 	$(MAKE) update
+	$(RUSTUP) component add rustfmt
 update: $(RUSTUP)
 	sudo apt update
 	sudo apt install `cat apt.txt`
