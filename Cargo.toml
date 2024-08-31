@@ -1,8 +1,13 @@
 [package]
-name        = "rusl"
-description = "Rust Script"
-version     = "0.0.1"
-edition     = "2021"
+name         = "rusl"
+description  = "Rust Script"
+version      = "0.0.1"
+authors      = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
+readme       = "README.md"
+repository   = "https://github.com/ponyatov/rusl"
+license      = "MIT"
+edition      = "2021"
+rust-version = "1.80"
 
 [build]
 [dependencies]
