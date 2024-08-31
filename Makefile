@@ -19,7 +19,10 @@ run: lib/$(MODULE).ini $(R)
 	$(CARGO) run -- $<
 
 # format
-
+.PHONY: format
+format: tmp/format_rs
+tmp/format_rs: $(R)
+	$(CARGO) fmt && touch $@
 
 # rule
 bin/$(MODULE): $(R)
