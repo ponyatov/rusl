@@ -46,7 +46,7 @@ pub fn check_memory() {
 /// fetch next opcode
 unsafe fn fetch() {
     assert!(Ip < Cp);
-    eprint!("\n{:04x}: ", Ip);
+    eprint!("{:04x}: ", Ip);
     op = unsafe { ::std::mem::transmute(M[Ip]) };
     eprint!("{:02x} ", op as u8);
     Ip += 1;
@@ -63,17 +63,18 @@ pub enum cmd {
 pub unsafe fn vm() {
     c(cmd::nop as u8);
     c(cmd::halt as u8);
-    // loop {
-    fetch();
-    match op {
-        cmd::nop => nop(),
-        cmd::halt => halt(),
-        _ => {
-            eprintln!("unknown opcode");
-            abort()
+    eprint!("");
+    loop {
+        fetch();
+        match op {
+            cmd::nop => nop(),
+            cmd::halt => halt(),
+            _ => {
+                eprintln!("unknown opcode");
+                abort()
+            }
         }
     }
-    // }
 }
 
 /// `( -- )` empty command: do nothing
