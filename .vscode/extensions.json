@@ -5,11 +5,15 @@
         "tabnine.tabnine-vscode",
         "ms-vscode.makefile-tools",
         // Linux
-        // "ms-vscode-remote.remote-ssh",
-        // "coolbear.systemd-unit-file",
+        "ms-vscode-remote.remote-ssh",
+        "coolbear.systemd-unit-file",
+        // "ms-azuretools.vscode-docker",
         // formatters
         "xaver.clang-format",
         "foxundermoon.shell-format",
+        // misc
+        "usernamehw.errorlens",
+        // "hbenl.vscode-test-explorer",
         // C++
         // "ms-vscode.cpptools",
         // "jeff-hykin.better-cpp-syntax",
