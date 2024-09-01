@@ -9,5 +9,4 @@ readme       = "README.md"
 edition      = "2021"
 rust-version = "1.80"
 
-[build]
 [dependencies]
