@@ -62,6 +62,7 @@ pub enum cmd {
 
 pub unsafe fn vm() {
     c(cmd::nop as u8);
+    c(cmd::undef as u8);
     c(cmd::halt as u8);
     eprint!("");
     loop {
