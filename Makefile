@@ -14,6 +14,9 @@ CARGO  = $(CAR)/cargo
 
 # src
 R += $(wildcard src/*.rs)
+R += $(wildcard config/src/*.rs)
+R += $(wildcard server/src/*.rs)
+R += $(wildcard media/src/*.rs)
 
 # all
 .PHONY: run all
@@ -21,6 +24,14 @@ all: bin/$(MODULE)
 run: lib/$(MODULE).ini $(R)
 	$(CARGO) run -- $<
 # RUST_BACKTRACE=1
+
+.PHONY: server
+server: $(R)
+	$(CARGO) run :server
+
+.PHONY: media
+media: $(R)
+	$(CARGO) run :media
 
 # format
 .PHONY: format

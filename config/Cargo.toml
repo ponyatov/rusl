@@ -1,6 +1,6 @@
 [package]
-name         = "rusl"
-description  = "Rust Script"
+name         = "config"
+description  = "shared configuration"
 version      = "0.0.1"
 authors      = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
 repository   = "https://github.com/ponyatov/rusl"
@@ -10,7 +10,6 @@ edition      = "2021"
 rust-version = "1.80"
 
 [dependencies]
-sdl2 = {version = "^0.37.0", features = ["use-pkgconfig"]}
 
-[workspace]
-members = ["config", "server", "media"]
+[lib]
+path = "src/config.rs"
