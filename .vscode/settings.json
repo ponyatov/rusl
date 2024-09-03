@@ -27,7 +27,8 @@
         "ref/**": true,
     },
     "files.associations": {
-        "Makefile.*": "makefile"
+        "Makefile.*": "makefile",
+        "server/static/manifest": "jsonc",
     },
 
     // editor

@@ -4,6 +4,9 @@ REL    = $(shell git rev-parse --short=4    HEAD)
 BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NOW    = $(shell date +%d%m%y)
 
+# version
+JQUERY_VER = 3.7.1
+
 # dir
 CAR = $(HOME)/.cargo/bin
 
@@ -63,7 +66,15 @@ update: $(RUSTUP)
 	sudo apt install `cat apt.txt`
 	$(RUSTUP) self update ; $(RUSTUP) update
 ref:
-gz:
+gz: cdn
 
 $(RUSTUP):
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# cdn
+CDNJS = https://cdnjs.cloudflare.com/ajax/libs
+.PHONY: cdn
+cdn: \
+	server/static/cdn/jquery.min.js
+server/static/cdn/jquery.min.js:
+	$(CURL) $@ $(CDNJS)/jquery/$(JQUERY_VER)/jquery.min.js

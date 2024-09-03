@@ -5,23 +5,62 @@
 const server: &str = config::server::url;
 const body: &str = include_str!("../static/index.html");
 const logo: &[u8] = include_bytes!("../../doc/logo.png");
+const manifest: &str = include_str!("../static/manifest");
+fn manifest_mime() -> Mime {
+    "application/manifest+json".parse::<Mime>().unwrap()
+}
+const jquery: &str = include_str!("../static/cdn/jquery.min.js");
 
 extern crate iron;
-#[macro_use]
-extern crate mime;
-
 use iron::prelude::*;
 use iron::status;
 
+#[macro_use]
+extern crate mime;
+use mime::Mime;
+
+extern crate router;
+use router::Router;
+
 fn main() {
     eprintln!("server @ http://{server}");
-    Iron::new(get_form).http(server).unwrap();
+    let mut router = Router::new();
+    router.get("/", get_index, "root");
+    router.get("/favicon.ico", get_logo, "ico");
+    router.get("/logo.png", get_logo, "png");
+    router.get("/manifest", get_manifest, "manifest");
+    router.get("/jquery.min.js", get_jquery, "jquery");
+    Iron::new(router).http(server).unwrap();
 }
 
-fn get_form(_request: &mut Request) -> IronResult<Response> {
+fn get_index(_request: &mut Request) -> IronResult<Response> {
     let mut response = Response::new();
     response.set_mut(status::Ok);
     response.set_mut(mime!(Text/Html;Charset=Utf8));
     response.set_mut(body);
-    return Ok(response);
+    Ok(response)
+}
+
+fn get_logo(_request: &mut Request) -> IronResult<Response> {
+    let mut response = Response::new();
+    response.set_mut(status::Ok);
+    response.set_mut(mime!(Image / Png));
+    response.set_mut(logo);
+    Ok(response)
+}
+
+fn get_manifest(_request: &mut Request) -> IronResult<Response> {
+    let mut response = Response::new();
+    response.set_mut(status::Ok);
+    response.set_mut(manifest_mime());
+    response.set_mut(manifest);
+    Ok(response)
+}
+
+fn get_jquery(_request: &mut Request) -> IronResult<Response> {
+    let mut response = Response::new();
+    response.set_mut(status::Ok);
+    response.set_mut(mime!(Text / Javascript));
+    response.set_mut(jquery);
+    Ok(response)
 }

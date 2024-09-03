@@ -1,0 +1,16 @@
+{
+    "name": "Rust Script",
+    "short_name": "rusl",
+    "description": "Rust workout & media network sample",
+    "icons": [
+        {
+            "src":"/logo.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#222222",
+    "background_color": "#222222",
+    "display": "standalone",
+    "start_url": "."
+}
