@@ -27,11 +27,11 @@ run: lib/$(MODULE).ini $(R)
 
 .PHONY: server
 server: $(R)
-	$(CARGO) run :server
+	$(CARGO) run -p $@
 
 .PHONY: media
 media: $(R)
-	$(CARGO) run :media
+	$(CARGO) run -p $@
 
 # format
 .PHONY: format

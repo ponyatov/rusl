@@ -1,9 +1,19 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 extern crate sdl2;
 use std::time::Duration;
 
-use crate::config;
+use config;
 
-pub fn game(argv: &String) {
+use sdl2::pixels::Color;
+
+/// background color
+const BG: Color = Color::RGB(0x22, 0x22, 0x22);
+/// dark ground (status bar)
+const DG: Color = Color::RGB(0x11, 0x11, 0x11);
+
+fn game(argv: &String) {
     let sdl_context = sdl2::init().unwrap();
     let video = sdl_context.video().unwrap();
     let audio = sdl_context.audio().unwrap();
@@ -18,8 +28,13 @@ pub fn game(argv: &String) {
         .build()
         .map_err(|e| e.to_string())
         .unwrap();
-    canvas.set_draw_color(config::BG);
+    canvas.set_draw_color(BG);
     canvas.clear();
     canvas.present();
-    ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 5));
+    ::std::thread::sleep(Duration::new(0, 1_000_000_000u32));
+}
+
+fn main() {
+    let argv: Vec<String> = std::env::args().collect();
+    game(&argv[0]);
 }

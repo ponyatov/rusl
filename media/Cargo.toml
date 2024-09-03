@@ -10,5 +10,9 @@ edition      = "2021"
 rust-version = "1.80"
 
 [dependencies]
+config = { path = "../config" }
+sdl2 = {version = "^0.37.0", features = ["use-pkgconfig"]}
 
 [[bin]]
+name = "media"
+path = "src/media.rs"

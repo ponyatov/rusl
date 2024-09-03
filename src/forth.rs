@@ -1,6 +1,6 @@
 use std::process::{abort, exit};
 
-use crate::config;
+extern crate config;
 
 /// main memory
 pub static mut M: &'static mut [u8] = &mut [0; config::Msz];

@@ -8,9 +8,7 @@
 #![allow(unused_mut)]
 #![allow(unused_unsafe)]
 
-pub mod config;
 pub mod forth;
-pub mod game;
 pub mod tutorial;
 
 fn main() {
@@ -26,7 +24,6 @@ fn main() {
     }
     // /
     tutorial::tutorial();
-    game::game(&argv[0]);
     forth::check_memory();
     unsafe {
         // forth::vm();

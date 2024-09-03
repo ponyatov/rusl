@@ -1,4 +1,4 @@
-use sdl2::pixels::Color;
+#![allow(non_upper_case_globals)]
 
 /// @name FORTH
 
@@ -16,7 +16,5 @@ pub const W: u32 = 240;
 /// screen height, pixels
 pub const H: u32 = 320;
 
-/// background color
-pub const BG: Color = Color::RGB(0x22, 0x22, 0x22);
-/// dark ground (status bar)
-pub const DG: Color = Color::RGB(0x11, 0x11, 0x11);
+/// management server binding
+pub const server: &str = "localhost:12345";
