@@ -20,10 +20,13 @@
 
     // files
     "files.exclude": {
+        "docs/**": true,
     },
     "files.watcherExclude": {
+        "ref/**": true,
     },
     "files.associations": {
+        "Makefile.*": "makefile"
     },
 
     // editor

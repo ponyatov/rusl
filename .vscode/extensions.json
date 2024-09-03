@@ -22,5 +22,11 @@
         "rust-lang.rust-analyzer",
         "statiolake.vscode-rustfmt",
         "tamasfe.even-better-toml"
+        // // embedded
+        // "marus25.cortex-debug",
+        // "zixuanwang.linkerscript",
+        // "trond-snekvik.gnu-mapfiles",
+        // "dan-c-underwood.arm",
+        // "luveti.kconfig",
     ]
 }
