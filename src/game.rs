@@ -21,5 +21,5 @@ pub fn game(argv: &String) {
     canvas.set_draw_color(config::BG);
     canvas.clear();
     canvas.present();
-    ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 1));
+    ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 5));
 }

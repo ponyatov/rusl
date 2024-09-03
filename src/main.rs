@@ -6,10 +6,12 @@
 #![allow(non_snake_case)]
 #![allow(unused_doc_comments)]
 #![allow(unused_mut)]
+#![allow(unused_unsafe)]
 
 pub mod config;
 pub mod forth;
 pub mod game;
+pub mod tutorial;
 
 fn main() {
     fn arg(argc: usize, argv: &str) {
@@ -23,17 +25,10 @@ fn main() {
         arg(argc, argv);
     }
     // /
+    tutorial::tutorial();
+    game::game(&argv[0]);
     forth::check_memory();
     unsafe {
         // forth::vm();
     }
-    tutorial();
-    game::game(&argv[0]);
-}
-
-fn tutorial() {
-    // https://rutube.ru/video/b24398e527ed2154aac4cd9081b316f6/?r=wd
-    let (mut x, y) = (0, 0);
-    [x, _] = [1, 2];
-    eprintln!("x:{x}");
 }
