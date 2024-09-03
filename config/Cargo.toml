@@ -10,6 +10,7 @@ edition      = "2021"
 rust-version = "1.80"
 
 [dependencies]
+const_format = "0.2.32"
 
 [lib]
 path = "src/config.rs"

@@ -2,8 +2,7 @@
 #![allow(non_upper_case_globals)]
 #![allow(unused_imports)]
 
-const server: &str = config::server;
-
+const server: &str = config::server::url;
 const body: &str = include_str!("../static/index.html");
 const logo: &[u8] = include_bytes!("../../doc/logo.png");
 

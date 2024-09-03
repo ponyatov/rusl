@@ -16,5 +16,11 @@ pub const W: u32 = 240;
 /// screen height, pixels
 pub const H: u32 = 320;
 
-/// management server binding
-pub const server: &str = "localhost:12345";
+pub mod server {
+    use const_format::formatcp;
+
+    /// management server binding
+    pub const ip: &str = "localhost";
+    pub const port: u16 = 12345;
+    pub const url: &str = formatcp!("{ip}:{port}");
+}
