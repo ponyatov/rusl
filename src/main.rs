@@ -2,50 +2,13 @@
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
 #![allow(non_upper_case_globals)]
+#![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 #![allow(unused_doc_comments)]
 #![allow(unused_mut)]
 
-/// main memory size, bytes
-const Msz: usize = 0x10000;
-/// return stack size, cells
-const Rsz: usize = 0x100;
-/// data stack size, cells
-const Dsz: usize = 0x10;
-
-/// main memory
-static mut M: &'static mut [u8] = &mut [0; Msz];
-/// compiler pointer
-static mut Cp: usize = 0;
-/// instruction pointer
-static mut Ip: usize = 0;
-
-/// return stack
-static mut R: &'static mut [usize] = &mut [0; Rsz];
-/// return stack pointer
-static mut Rp: u16 = 0;
-
-/// data stack
-static mut D: &'static mut [isize] = &mut [0; Dsz];
-/// data stack pointer
-static mut Dp: u8 = 0;
-
-/// check memory sizes
-fn check_memory() {
-    eprintln!("M:0x{Msz:x} R:0x{Rsz:x} D:0x{Dsz:x}");
-    const Mmin: usize = 0x10;
-    const Mmax: usize = u16::MAX as usize + 1;
-    assert!(Msz >= Mmin);
-    assert!(Msz <= Mmax);
-    const Rmin: usize = 0x10;
-    const Rmax: usize = u16::MAX as usize + 1;
-    assert!(Rsz >= Rmin);
-    assert!(Rsz <= Rmax);
-    const Dmin: usize = 0x10;
-    const Dmax: usize = u8::MAX as usize + 1;
-    assert!(Dsz >= Dmin);
-    assert!(Dsz <= Dmax);
-}
+pub mod config;
+pub mod forth;
 
 fn main() {
     fn arg(argc: usize, argv: &str) {
@@ -59,30 +22,12 @@ fn main() {
         arg(argc, argv);
     }
     // /
-    check_memory();
+    forth::check_memory();
     unsafe {
-        vm();
+        forth::vm();
     }
     tutorial();
-}
-
-unsafe fn vm() {
-    // loop {
-    //     fetch();
-    // }
-}
-
-unsafe fn fetch() {
-    assert!(Ip < Cp);
-    let op: u8 = M[Ip];
-    Ip += 1;
-}
-
-/// `( -- )` empty command: do nothing
-fn nop() {}
-/// `( -- )` stop system
-fn halt() {
-    std::process::exit(0);
+    game(&argv[0]);
 }
 
 fn tutorial() {
@@ -90,4 +35,28 @@ fn tutorial() {
     let (mut x, y) = (0, 0);
     [x, _] = [1, 2];
     eprintln!("x:{x}");
+}
+
+extern crate sdl2;
+use std::time::Duration;
+
+fn game(argv: &String) {
+    let sdl_context = sdl2::init().unwrap();
+    let video = sdl_context.video().unwrap();
+    let audio = sdl_context.audio().unwrap();
+    let window = video
+        .window(&argv, config::W, config::H)
+        .opengl()
+        .build()
+        .map_err(|e| e.to_string())
+        .unwrap();
+    let mut canvas = window
+        .into_canvas()
+        .build()
+        .map_err(|e| e.to_string())
+        .unwrap();
+    canvas.set_draw_color(config::BG);
+    canvas.clear();
+    canvas.present();
+    ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 1));
 }
