@@ -8,6 +8,7 @@ NOW    = $(shell date +%d%m%y)
 JQUERY_VER = 3.7.1
 
 # dir
+CWD = $(CURDIR)
 CAR = $(HOME)/.cargo/bin
 
 # tool
