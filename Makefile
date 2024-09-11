@@ -4,6 +4,12 @@ REL    = $(shell git rev-parse --short=4    HEAD)
 BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NOW    = $(shell date +%d%m%y)
 
+# cross
+HW = stm32vldiscovery
+include   hw/$(HW).mk
+include  cpu/$(CPU).mk
+include arch/$(ARCH).mk
+
 # version
 JQUERY_VER = 3.7.1
 
@@ -45,7 +51,11 @@ gui: $(R)
 
 .PHONY: embed
 embed: $(R)
-	$(CARGO) run -p $@
+	$(CARGO) build -p $@
+
+.PHONY: qemu
+qemu:
+	$(QEMU) $(QEMU_CFG) -S -s
 
 # format
 .PHONY: format
@@ -70,8 +80,7 @@ $(HOME)/doc/Rust/The_Rust_Programming_Language.pdf:
 # install
 .PHONY: install update ref gz
 install: doc ref gz $(RUSTUP)
-	$(MAKE) update
-	$(RUSTUP) component add rustfmt
+	$(MAKE) update rust
 update: $(RUSTUP)
 	sudo apt update
 	sudo apt install `cat apt.txt`
@@ -81,6 +90,11 @@ gz: cdn
 
 $(RUSTUP):
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+.PHONY: rust
+rust: $(RUSTUP)
+	$(RUSTUP) component add rustfmt
+	$(RUSTUP) target add $(TARGET)
 
 # cdn
 CDNJS = https://cdnjs.cloudflare.com/ajax/libs

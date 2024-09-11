@@ -1,0 +1,1 @@
+ARCH = CortexM3

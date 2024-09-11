@@ -12,6 +12,6 @@ rust-version = "1.80"
 [dependencies]
 config = { path = "../config" }
 
-[[bin]]
+[lib]
 name = "embed"
 path = "src/embed.rs"
