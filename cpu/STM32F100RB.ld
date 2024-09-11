@@ -10,7 +10,7 @@ MEMORY
 
 _estack = ORIGIN(RAM) + LENGTH(RAM);
 
-MIN_HEAP_SIZE = 0;
+MIN_HEAP_SIZE  = 0;
 MIN_STACK_SIZE = 256;
 
 SECTIONS
@@ -112,7 +112,7 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
-  PROVIDE(end = _ebss);
+  PROVIDE( end = _ebss);
   PROVIDE(_end = _ebss);
 
   /* User_heap_stack section, used to check that there is enough RAM left */
