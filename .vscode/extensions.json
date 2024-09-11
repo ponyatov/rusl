@@ -15,18 +15,19 @@
         "usernamehw.errorlens",
         // "hbenl.vscode-test-explorer",
         // C++
-        // "ms-vscode.cpptools",
-        // "jeff-hykin.better-cpp-syntax",
+        "ms-vscode.cpptools",
+        "jeff-hykin.better-cpp-syntax",
         // "ms-vscode.cmake-tools",
         // Rust
         "rust-lang.rust-analyzer",
         "statiolake.vscode-rustfmt",
         "tamasfe.even-better-toml",
-        // // embedded
-        // "marus25.cortex-debug",
-        // "zixuanwang.linkerscript",
-        // "trond-snekvik.gnu-mapfiles",
-        // "dan-c-underwood.arm",
+        // embedded
+        // "rreverser.ragel",
+        "marus25.cortex-debug",
+        "zixuanwang.linkerscript",
+        "trond-snekvik.gnu-mapfiles",
+        "dan-c-underwood.arm",
         // "luveti.kconfig",
     ]
 }
