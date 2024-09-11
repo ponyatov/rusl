@@ -1,6 +1,6 @@
 [package]
-name         = "rusl"
-description  = "Rust Script"
+name         = "gui"
+description  = "GUI workout"
 version      = "0.0.1"
 authors      = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
 repository   = "https://github.com/ponyatov/rusl"
@@ -10,7 +10,8 @@ edition      = "2021"
 rust-version = "1.80"
 
 [dependencies]
-config = { path = "config" }
+config = { path = "../config" }
 
-[workspace]
-members = ["config", "server", "media", "gui", "embed"]
+[[bin]]
+name = "gui"
+path = "src/gui.rs"

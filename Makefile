@@ -21,6 +21,8 @@ R += $(wildcard src/*.rs)
 R += $(wildcard config/src/*.rs)
 R += $(wildcard server/src/*.rs)
 R += $(wildcard media/src/*.rs)
+R += $(wildcard gui/src/*.rs)
+R += $(wildcard embed/src/*.rs)
 
 # all
 .PHONY: run all
@@ -35,6 +37,14 @@ server: $(R)
 
 .PHONY: media
 media: $(R)
+	$(CARGO) run -p $@
+
+.PHONY: gui
+gui: $(R)
+	$(CARGO) run -p $@
+
+.PHONY: embed
+embed: $(R)
 	$(CARGO) run -p $@
 
 # format
