@@ -93,12 +93,15 @@ $(RUSTUP):
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 .PHONY: rust
-rust: $(RUSTUP) ref/cortex-m-quickstart
+rust: $(RUSTUP) ref/cortex-m-quickstart cpu/STM32F100RB.ld
 	$(RUSTUP) component add rustfmt
 	$(RUSTUP) target add $(TARGET)
 
 ref/cortex-m-quickstart:
 	$(GITREF) https://github.com/rust-embedded/cortex-m-quickstart.git $@
+
+cpu/STM32F100RB.ld:
+	$(CURL) $@ https://robocraft.ru/files/stm32/lesson-1-ide/stm32f100rb.ld
 
 # cdn
 CDNJS = https://cdnjs.cloudflare.com/ajax/libs
