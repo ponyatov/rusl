@@ -21,6 +21,7 @@ CAR = $(HOME)/.cargo/bin
 CURL   = curl -L -o
 RUSTUP = $(CAR)/rustup
 CARGO  = $(CAR)/cargo
+GITREF = git clone --depth 1
 
 # src
 R += $(wildcard src/*.rs)
@@ -92,9 +93,12 @@ $(RUSTUP):
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 .PHONY: rust
-rust: $(RUSTUP)
+rust: $(RUSTUP) ref/cortex-m-quickstart
 	$(RUSTUP) component add rustfmt
 	$(RUSTUP) target add $(TARGET)
+
+ref/cortex-m-quickstart:
+	$(GITREF) https://github.com/rust-embedded/cortex-m-quickstart.git $@
 
 # cdn
 CDNJS = https://cdnjs.cloudflare.com/ajax/libs
