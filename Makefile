@@ -52,7 +52,7 @@ gui: $(R)
 
 .PHONY: embed
 embed: $(R)
-	$(CARGO) build -p $@
+	$(CARGO) run -p $@
 
 .PHONY: qemu
 qemu:
