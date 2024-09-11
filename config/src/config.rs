@@ -1,3 +1,4 @@
+#![no_std]
 #![allow(non_upper_case_globals)]
 
 /// @name FORTH

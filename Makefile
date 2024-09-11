@@ -29,7 +29,7 @@ R += $(wildcard config/src/*.rs)
 R += $(wildcard server/src/*.rs)
 R += $(wildcard media/src/*.rs)
 R += $(wildcard gui/src/*.rs)
-R += $(wildcard embed/src/*.rs)
+R += $(wildcard embed/src/*.rs) $(wildcard embed/*.rs)
 
 # all
 .PHONY: run all
